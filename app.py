@@ -17,7 +17,6 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-%matplotlib inline
 
 #Import ETF data
 jp_etf_df = pd.read_csv('C:/Users/achot/Downloads/JPMorgan Equity Premium Income ETF (JEPI).csv')
@@ -28,7 +27,7 @@ spy_df
 #Covert Date column to datatime type
 jp_etf_df['Date'] = pd.to_datetime(jp_etf_df['Date'], utc=True, infer_datetime_format = True)
 jp_etf_df['Date2'] = jp_etf_df['Date'].dt.strftime('%m/%d/%y')
-jp_etf_df['Date2'] = jp_etf_df.pd
+
 
 #Create basic plots
 x = jp_etf_df['Date']
@@ -51,7 +50,8 @@ spy_jp_timeframe = pd.DataFrame(spy_df.loc[time])
 spy_jp_timeframe
 
 #Create Label columns for each dataframe
-jp_etf_df['Label'] =
+jp_etf_df['Label'] = 'JP Morgan ETF'
+spy_jp_timeframe['Label'] = 'SP500'
 
 #Merge dataframes to begin plotting comparisons
 jp_etf_spy_df = pd.merge(jp_etf_df[['Close', 'Adj Close', 'Volume', 'Date2']], spy_jp_timeframe, how = 'left', on = 'Date2')
